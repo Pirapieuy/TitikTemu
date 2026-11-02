@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Titik Temu COD</title>
+  <meta name="description" content="Tentukan tempat bertemu COD tepat di tengah lokasi penjual dan pembeli.">
+  <meta name="theme-color" content="#0e6b4e">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main id="beranda" class="beranda">
+    <div class="papan papan--besar">
+      <div class="papan__arah">
+        <span class="arah">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M20 12H5m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Penjual
+        </span>
+        <span class="arah">
+          Pembeli
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+      <h1>Titik Temu</h1>
+      <p>Bertemu di tengah untuk COD</p>
+    </div>
+
+    <p class="pengantar">Penjual dan pembeli sama-sama menyalakan GPS. Titik temu muncul di peta, tepat di tengah jarak keduanya.</p>
+
+    <ol class="langkah">
+      <li>Penjual membuat sesi COD</li>
+      <li>Penjual mengirim link ke pembeli lewat WhatsApp</li>
+      <li>Pembeli membagikan lokasinya, titik temu langsung muncul</li>
+    </ol>
+
+    <div class="mulai">
+      <button id="buat" class="tombol tombol--utama" type="button">Buat sesi COD</button>
+      <p id="pesan-beranda" class="pesan" role="alert" hidden></p>
+      <p id="privasi" class="catatan"></p>
+    </div>
+  </main>
+
+  <main id="sesi" class="sesi" hidden>
+    <div id="peta" aria-label="Peta titik temu"></div>
+    <p id="status" class="status" role="status" hidden></p>
+
+    <section id="panel" class="panel" aria-label="Detail titik temu">
+      <div class="papan papan--kecil" aria-live="polite">
+        <p class="papan__tempat" id="tempat">Titik temu belum tersedia</p>
+        <div class="papan__jarak">
+          <div class="sisi">
+            <span class="sisi__nama">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 12H5m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Penjual
+            </span>
+            <strong id="jarak-penjual">–</strong>
+          </div>
+          <div class="sisi sisi--kanan">
+            <span class="sisi__nama">
+              Pembeli
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <strong id="jarak-pembeli">–</strong>
+          </div>
+        </div>
+      </div>
+
+      <p id="total" class="total" hidden></p>
+      <ul id="pihak" class="pihak"></ul>
+      <p id="pesan" class="pesan" role="alert" hidden></p>
+      <p id="privasi-sesi" class="catatan"></p>
+      <div id="aksi" class="aksi"></div>
+
+      <details id="sekitar" class="sekitar">
+        <summary>Tempat di sekitar titik temu</summary>
+        <ul id="daftar-sekitar"></ul>
+      </details>
+
+      <div id="kaki" class="kaki"></div>
+    </section>
+
+    <section id="selesai" class="panel panel--selesai" hidden>
+      <h2 id="selesai-judul"></h2>
+      <p id="selesai-teks"></p>
+      <a class="tombol tombol--utama" href="./">Kembali ke beranda</a>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

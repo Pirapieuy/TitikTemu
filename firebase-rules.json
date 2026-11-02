@@ -1,0 +1,39 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "sesi": {
+      "$id": {
+        ".read": "$id.length >= 10 && data.exists() && data.child('dibuat').val() > now - 7200000",
+        ".write": "$id.length >= 10 && (!data.exists() || data.child('dibuat').val() > now - 7200000)",
+        ".validate": "newData.hasChild('dibuat')",
+        "dibuat": {
+          ".validate": "newData.isNumber() && (!data.exists() || newData.val() === data.val())"
+        },
+        "penjual": {
+          ".validate": "newData.hasChildren(['lat', 'lng', 't'])",
+          "lat": { ".validate": "newData.isNumber() && newData.val() >= -90 && newData.val() <= 90" },
+          "lng": { ".validate": "newData.isNumber() && newData.val() >= -180 && newData.val() <= 180" },
+          "akurasi": { ".validate": "newData.isNumber()" },
+          "t": { ".validate": "newData.isNumber()" },
+          "$lain": { ".validate": false }
+        },
+        "pembeli": {
+          ".validate": "newData.hasChildren(['lat', 'lng', 't'])",
+          "lat": { ".validate": "newData.isNumber() && newData.val() >= -90 && newData.val() <= 90" },
+          "lng": { ".validate": "newData.isNumber() && newData.val() >= -180 && newData.val() <= 180" },
+          "akurasi": { ".validate": "newData.isNumber()" },
+          "t": { ".validate": "newData.isNumber()" },
+          "$lain": { ".validate": false }
+        },
+        "titik": {
+          ".validate": "newData.hasChildren(['lat', 'lng'])",
+          "lat": { ".validate": "newData.isNumber() && newData.val() >= -90 && newData.val() <= 90" },
+          "lng": { ".validate": "newData.isNumber() && newData.val() >= -180 && newData.val() <= 180" },
+          "$lain": { ".validate": false }
+        },
+        "$lain": { ".validate": false }
+      }
+    }
+  }
+}
